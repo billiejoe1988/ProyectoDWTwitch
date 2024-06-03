@@ -22,8 +22,7 @@ twitch_config = {
     'client_secret': os.getenv('TWITCH_CLIENT_SECRET')
 }
 
-# Auth y acceder para extraccion. 
-def get_access_token():
+def obtener_token():
     url = 'https://id.twitch.tv/oauth2/token'
     params = {
         'client_id': twitch_config['client_id'],
@@ -40,7 +39,7 @@ def get_access_token():
         return None
 
 def extraer_datos():
-    access_token = get_access_token()
+    access_token = obtener_token()
 
     if access_token:
         url = 'https://api.twitch.tv/helix/streams'

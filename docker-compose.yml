@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:9.6
+
+  redis:
+    image: redis:5.0.5
+
+  webserver:
+    image: apache/airflow:2.0.1
+    restart: always
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "8080:8080"
+    command: webserver
+
+  scheduler:
+    image: apache/airflow:2.0.1
+    restart: always
+    depends_on:
+      - webserver
+    command: scheduler
+
+  worker:
+    image: apache/airflow:2.0.1
+    restart: always
+    depends_on:
+      - scheduler
+    command: celery worker
