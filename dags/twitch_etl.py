@@ -80,6 +80,19 @@ def extraer_datos():
 
             df = pd.DataFrame(streams)
             
+            # Verificar y eliminar filas duplicadas
+            df.drop_duplicates(inplace=True)
+            
+            # Verificar valores nulos y eliminar filas con valores nulos
+            df.dropna(inplace=True)
+
+            # Definir límites superiores e inferiores para la columna 'viewer_count'
+            upper_limit = df['viewer_count'].quantile(0.99999)
+            lower_limit = df['viewer_count'].quantile(0.01)
+
+            # Filtrar valores atípicos fuera de los límites
+            df = df[(df['viewer_count'] >= lower_limit) & (df['viewer_count'] <= upper_limit)]
+            
             # Exportar los datos a un  CSV
             df.to_csv('twitch_data.csv', index=False)
 
