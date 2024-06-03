@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta
-from airflow import DAG
-from airflow.operators.python import PythonOperator 
+from airflow import DAG # type: ignore
+from airflow.operators.python_operator import PythonOperator # type: ignore
 from twitch_etl import obtener_token, extraer_datos
 
-# Definir los argumentos por defecto del DAG
+# Argumentos
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
@@ -14,7 +14,7 @@ default_args = {
     'retry_delay': timedelta(minutes=5),
 }
 
-# Definir el DAG
+# DAG
 dag = DAG(
     'twitch_data_pipeline',
     default_args=default_args,
@@ -22,14 +22,14 @@ dag = DAG(
     schedule_interval=timedelta(days=1),
 )
 
-# Definir la tarea para obtener el token de acceso
+# Definir token de acceso
 get_token_task = PythonOperator(
     task_id='get_twitch_access_token',
     python_callable=obtener_token,
     dag=dag,
 )
 
-# Definir la tarea para extraer los datos
+# Eextraer los datos
 extract_task = PythonOperator(
     task_id='extract_twitch_data',
     python_callable=extraer_datos,

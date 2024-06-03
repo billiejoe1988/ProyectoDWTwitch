@@ -1,9 +1,9 @@
 import os
-from dotenv import load_dotenv
-import requests
+from dotenv import load_dotenv # type: ignore
+import requests # type: ignore
 import json
-import psycopg2
-import pandas as pd
+import psycopg2 # type: ignore
+import pandas as pd # type: ignore
 from datetime import datetime
 
 # Cargar variables de entorno desde el .env
