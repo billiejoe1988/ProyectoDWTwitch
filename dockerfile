@@ -25,4 +25,4 @@ EXPOSE 8080
 COPY ./dags/ $AIRFLOW_HOME/dags/
 
 # Especificar el comando a ejecutar al iniciar el contenedor
-CMD ["airflow webserver & airflow scheduler", "-p", "8080"]
+CMD ["bash", "-c", "airflow webserver & airflow scheduler"]
