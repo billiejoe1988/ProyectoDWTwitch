@@ -1,0 +1,17 @@
+[2024-06-15T16:26:10.356+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-15T16:26:10.435+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: twitch_data_pipeline.get_twitch_access_token scheduled__2024-02-29T00:00:00+00:00 [queued]>
+[2024-06-15T16:26:10.457+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: twitch_data_pipeline.get_twitch_access_token scheduled__2024-02-29T00:00:00+00:00 [queued]>
+[2024-06-15T16:26:10.459+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-06-15T16:26:10.523+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): get_twitch_access_token> on 2024-02-29 00:00:00+00:00
+[2024-06-15T16:26:10.533+0000] {standard_task_runner.py:63} INFO - Started process 1951 to run task
+[2024-06-15T16:26:10.546+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'twitch_data_pipeline', 'get_twitch_access_token', 'scheduled__2024-02-29T00:00:00+00:00', '--job-id', '187', '--raw', '--subdir', 'DAGS_FOLDER/twitch_dag.py', '--cfg-path', '/tmp/tmphnz5qjei']
+[2024-06-15T16:26:10.650+0000] {standard_task_runner.py:91} INFO - Job 187: Subtask get_twitch_access_token
+[2024-06-15T16:26:11.845+0000] {task_command.py:426} INFO - Running <TaskInstance: twitch_data_pipeline.get_twitch_access_token scheduled__2024-02-29T00:00:00+00:00 [running]> on host 842f2a220d8d
+[2024-06-15T16:26:12.829+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='twitch_data_pipeline' AIRFLOW_CTX_TASK_ID='get_twitch_access_token' AIRFLOW_CTX_EXECUTION_DATE='2024-02-29T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-29T00:00:00+00:00'
+[2024-06-15T16:26:12.832+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-15T16:26:14.718+0000] {python.py:237} INFO - Done. Returned value was: xda1oxwvf25z4z7rl6r5m78e6qcniv
+[2024-06-15T16:26:14.732+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-15T16:26:14.952+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=twitch_data_pipeline, task_id=get_twitch_access_token, run_id=scheduled__2024-02-29T00:00:00+00:00, execution_date=20240229T000000, start_date=20240615T162610, end_date=20240615T162614
+[2024-06-15T16:26:15.069+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-15T16:26:15.227+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-06-15T16:26:15.235+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

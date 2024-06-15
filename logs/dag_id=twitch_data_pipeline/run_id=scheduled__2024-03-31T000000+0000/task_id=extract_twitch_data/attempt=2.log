@@ -1,0 +1,34 @@
+[2024-06-15T16:38:42.199+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-15T16:38:42.224+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: twitch_data_pipeline.extract_twitch_data scheduled__2024-03-31T00:00:00+00:00 [queued]>
+[2024-06-15T16:38:42.237+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: twitch_data_pipeline.extract_twitch_data scheduled__2024-03-31T00:00:00+00:00 [queued]>
+[2024-06-15T16:38:42.238+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2024-06-15T16:38:42.257+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): extract_twitch_data> on 2024-03-31 00:00:00+00:00
+[2024-06-15T16:38:42.263+0000] {standard_task_runner.py:63} INFO - Started process 3920 to run task
+[2024-06-15T16:38:42.267+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'twitch_data_pipeline', 'extract_twitch_data', 'scheduled__2024-03-31T00:00:00+00:00', '--job-id', '322', '--raw', '--subdir', 'DAGS_FOLDER/twitch_dag.py', '--cfg-path', '/tmp/tmp9163mxjb']
+[2024-06-15T16:38:42.271+0000] {standard_task_runner.py:91} INFO - Job 322: Subtask extract_twitch_data
+[2024-06-15T16:38:42.341+0000] {task_command.py:426} INFO - Running <TaskInstance: twitch_data_pipeline.extract_twitch_data scheduled__2024-03-31T00:00:00+00:00 [running]> on host 842f2a220d8d
+[2024-06-15T16:38:42.498+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='twitch_data_pipeline' AIRFLOW_CTX_TASK_ID='extract_twitch_data' AIRFLOW_CTX_EXECUTION_DATE='2024-03-31T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-03-31T00:00:00+00:00'
+[2024-06-15T16:38:42.504+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-15T16:38:59.764+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-15T16:38:59.765+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+  File "/usr/local/lib/python3.9/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/twitch_etl.py", line 104, in extraer_datos
+    cur.execute("DROP TABLE IF EXISTS twitch_streams;")
+psycopg2.errors.InternalError_: could not open relation with OID 1099881
+
+[2024-06-15T16:38:59.779+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=twitch_data_pipeline, task_id=extract_twitch_data, run_id=scheduled__2024-03-31T00:00:00+00:00, execution_date=20240331T000000, start_date=20240615T163842, end_date=20240615T163859
+[2024-06-15T16:38:59.846+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 322 for task extract_twitch_data (could not open relation with OID 1099881
+; 3920)
+[2024-06-15T16:38:59.873+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-15T16:38:59.899+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-15T16:38:59.903+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
